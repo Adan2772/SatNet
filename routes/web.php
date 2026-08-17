@@ -23,7 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('clientes', ClienteController::class);
-    Route::resource('planes', PlanController::class)->except(['show']);
+    Route::resource('planes', PlanController::class)
+        ->parameters(['planes' => 'plan'])
+        ->except(['show']);
 
     Route::post('suscripciones/{suscripcion}/pagos', [PagoController::class, 'store'])
         ->name('suscripciones.pagos.store');
