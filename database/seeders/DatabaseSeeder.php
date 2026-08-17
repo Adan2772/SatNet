@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Cliente;
+use App\Models\Enlace;
 use App\Models\Pago;
 use App\Models\Plan;
 use App\Models\Recibo;
@@ -44,9 +45,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $clientes = [
-            ['nombre' => 'María Torres', 'plan' => $planEstandar, 'dias' => -2],
-            ['nombre' => 'Luis Gómez', 'plan' => $planBasico, 'dias' => -9],
-            ['nombre' => 'Carla Ruiz', 'plan' => $planPremium, 'dias' => 15],
+            [
+                'nombre' => 'María Torres', 'plan' => $planEstandar, 'dias' => -2,
+                'enlace' => ['nombre' => 'ENL-0104', 'ip' => '10.10.4.12', 'antena' => 'Ubiquiti LiteBeam AC', 'nodo' => 'Torre Centro', 'estado' => 'activo'],
+            ],
+            [
+                'nombre' => 'Luis Gómez', 'plan' => $planBasico, 'dias' => -9,
+                'enlace' => ['nombre' => 'ENL-0087', 'ip' => '10.10.2.34', 'antena' => 'TP-Link CPE210', 'nodo' => 'Torre Norte', 'estado' => 'falla'],
+            ],
+            [
+                'nombre' => 'Carla Ruiz', 'plan' => $planPremium, 'dias' => 15,
+                'enlace' => ['nombre' => 'ENL-0231', 'ip' => '10.10.4.23', 'antena' => 'Ubiquiti NanoStation 5AC', 'nodo' => 'Torre Centro', 'estado' => 'activo'],
+            ],
             ['nombre' => 'Jorge Medina', 'plan' => $planBasico, 'dias' => 3],
             ['nombre' => 'Ana Delgado', 'plan' => $planEstandar, 'dias' => 0],
             ['nombre' => 'Pedro Salinas', 'plan' => $planEstandar, 'dias' => -1],
@@ -67,6 +77,18 @@ class DatabaseSeeder extends Seeder
                 'dia_pago' => $fechaProximoPago->day,
                 'fecha_proximo_pago' => $fechaProximoPago,
             ]);
+
+            if (isset($datos['enlace'])) {
+                Enlace::create([
+                    'suscripcion_id' => $suscripcion->id,
+                    'nombre' => $datos['enlace']['nombre'],
+                    'ip_asignada' => $datos['enlace']['ip'],
+                    'tipo_antena' => $datos['enlace']['antena'],
+                    'nodo' => $datos['enlace']['nodo'],
+                    'estado' => $datos['enlace']['estado'],
+                    'fecha_instalacion' => Carbon::today()->subMonths(random_int(1, 12)),
+                ]);
+            }
 
             // Carla Ruiz ya tiene un pago anterior en su historial, con recibo.
             if ($datos['nombre'] === 'Carla Ruiz') {

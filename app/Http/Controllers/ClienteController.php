@@ -63,7 +63,7 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente): View
     {
-        $cliente->load(['suscripciones.plan', 'suscripciones.pagos.recibo']);
+        $cliente->load(['suscripciones.plan', 'suscripciones.pagos.recibo', 'suscripciones.enlace']);
 
         return view('clientes.show', [
             'cliente' => $cliente,

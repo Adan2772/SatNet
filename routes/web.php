@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReciboController;
@@ -29,6 +30,11 @@ Route::middleware('auth')->group(function () {
 
     Route::post('suscripciones/{suscripcion}/pagos', [PagoController::class, 'store'])
         ->name('suscripciones.pagos.store');
+
+    Route::get('suscripciones/{suscripcion}/enlace', [EnlaceController::class, 'edit'])
+        ->name('suscripciones.enlace.edit');
+    Route::put('suscripciones/{suscripcion}/enlace', [EnlaceController::class, 'update'])
+        ->name('suscripciones.enlace.update');
 
     Route::get('recibos/{recibo}', [ReciboController::class, 'show'])->name('recibos.show');
 });

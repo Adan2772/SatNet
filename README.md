@@ -35,3 +35,5 @@ En local, los correos (recordatorios y recibos) no se envían de verdad: `MAIL_M
 ## Estructura del dominio
 
 `Cliente` → `Suscripcion` (plan + día de pago) → `Pago` → `Recibo`. El estado de cobro (`al_dia` / `tolerancia` / `vencido`) se calcula al vuelo a partir de `fecha_proximo_pago`, nunca se guarda en base de datos.
+
+Cada `Suscripcion` puede tener un `Enlace` (1 a 1): nombre, IP asignada, MAC, tipo de antena/CPE, nodo o torre de distribución, número de serie, fecha de instalación, estado (activo / suspendido / falla) y coordenadas. Es información técnica del punto de servicio, independiente del estado de cobro — un cliente puede estar al día y tener el enlace caído, o viceversa. Se edita desde la ficha del cliente.

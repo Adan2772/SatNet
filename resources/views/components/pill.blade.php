@@ -5,6 +5,9 @@
         'al_dia' => ['label' => 'Al día', 'class' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
         'tolerancia' => ['label' => 'En tolerancia', 'class' => 'bg-amber-50 text-amber-700 border-amber-200'],
         'vencido' => ['label' => 'Vencido', 'class' => 'bg-rose-50 text-rose-700 border-rose-200'],
+        'activo' => ['label' => 'Activo', 'class' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+        'suspendido' => ['label' => 'Suspendido', 'class' => 'bg-amber-50 text-amber-700 border-amber-200'],
+        'falla' => ['label' => 'En falla', 'class' => 'bg-rose-50 text-rose-700 border-rose-200'],
     ][$estado] ?? ['label' => $estado, 'class' => 'bg-gray-50 text-gray-600 border-gray-200'];
 @endphp
 

@@ -85,6 +85,31 @@
                         </button>
                     </form>
                 </div>
+
+                <div class="mt-6">
+                    <div class="mb-3 flex items-center justify-between">
+                        <h2 class="font-display text-lg font-semibold">Enlace técnico</h2>
+                        <a href="{{ route('suscripciones.enlace.edit', $suscripcion) }}" class="text-sm font-medium text-brand-600 hover:text-brand-700">
+                            {{ $suscripcion->enlace ? 'Editar' : '+ Agregar' }}
+                        </a>
+                    </div>
+                    <div class="rounded-xl border border-brand-100 bg-white p-4">
+                        @if ($suscripcion->enlace)
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="font-mono text-sm font-medium">{{ $suscripcion->enlace->nombre }}</span>
+                                <x-pill :estado="$suscripcion->enlace->estado" />
+                            </div>
+                            <dl class="space-y-1 text-sm">
+                                <div class="flex justify-between"><dt class="text-ink/50">IP asignada</dt><dd class="font-mono">{{ $suscripcion->enlace->ip_asignada ?? '—' }}</dd></div>
+                                <div class="flex justify-between"><dt class="text-ink/50">Antena / equipo</dt><dd>{{ $suscripcion->enlace->tipo_antena ?? '—' }}</dd></div>
+                                <div class="flex justify-between"><dt class="text-ink/50">Nodo</dt><dd>{{ $suscripcion->enlace->nodo ?? '—' }}</dd></div>
+                                <div class="flex justify-between"><dt class="text-ink/50">Instalado</dt><dd class="font-mono">{{ $suscripcion->enlace->fecha_instalacion->translatedFormat('d M Y') }}</dd></div>
+                            </dl>
+                        @else
+                            <p class="text-sm text-ink/50">Todavía no se registró la información técnica de este enlace (IP, antena, nodo, fecha de instalación).</p>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     @else
