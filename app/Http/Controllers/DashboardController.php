@@ -34,6 +34,24 @@ class DashboardController extends Controller
             'vencidos' => $porEstado->get('vencido', collect())->count(),
             'cobradoEsteMes' => $cobradoEsteMes,
             'proximosVencimientos' => $proximosVencimientos,
+            'ingresosPorMes' => $this->ingresosUltimosMeses(),
         ]);
+    }
+
+    private function ingresosUltimosMeses(int $meses = 6): \Illuminate\Support\Collection
+    {
+        return collect(range($meses - 1, 0))->map(function (int $mesesAtras) {
+            $mes = now()->subMonthsNoOverflow($mesesAtras);
+
+            $total = Pago::query()
+                ->whereMonth('fecha_pago', $mes->month)
+                ->whereYear('fecha_pago', $mes->year)
+                ->sum('monto');
+
+            return [
+                'etiqueta' => $mes->translatedFormat('M Y'),
+                'total' => (float) $total,
+            ];
+        });
     }
 }

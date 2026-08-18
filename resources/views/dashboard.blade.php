@@ -54,4 +54,25 @@
             </div>
         @endif
     </div>
+
+    <div class="mt-8">
+        <div class="mb-3 flex items-center justify-between">
+            <h2 class="font-display text-lg font-semibold">Ingresos — últimos 6 meses</h2>
+            <a href="{{ route('reportes.pagos') }}" class="text-sm font-medium text-brand-600 hover:text-brand-700">Ver reporte de cobros →</a>
+        </div>
+        <div class="rounded-xl border border-brand-100 bg-white p-4">
+            @php $maximo = max(1, $ingresosPorMes->max('total')); @endphp
+            <div class="space-y-3">
+                @foreach ($ingresosPorMes as $mes)
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="w-16 shrink-0 text-ink/50">{{ $mes['etiqueta'] }}</span>
+                        <div class="h-2.5 flex-1 rounded-full bg-brand-50">
+                            <div class="h-2.5 rounded-full bg-brand-500" style="width: {{ max(3, round($mes['total'] / $maximo * 100)) }}%"></div>
+                        </div>
+                        <span class="w-24 shrink-0 text-right font-mono tabular-nums">${{ number_format($mes['total'], 2) }}</span>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 </x-app-layout>

@@ -13,8 +13,17 @@ class ClienteController extends Controller
 {
     public function index(Request $request): View
     {
+        $busqueda = trim((string) $request->query('q'));
+
         $clientes = Cliente::query()
-            ->with(['suscripciones' => fn ($q) => $q->activas()->with('plan')])
+            ->with(['suscripciones' => fn ($q) => $q->with('plan')])
+            ->when($busqueda !== '', function ($query) use ($busqueda) {
+                $query->where(function ($q) use ($busqueda) {
+                    $q->where('nombre', 'like', "%{$busqueda}%")
+                        ->orWhere('telefono', 'like', "%{$busqueda}%")
+                        ->orWhere('correo', 'like', "%{$busqueda}%");
+                });
+            })
             ->orderBy('nombre')
             ->get();
 
@@ -27,6 +36,7 @@ class ClienteController extends Controller
         return view('clientes.index', [
             'clientes' => $clientes,
             'estadoFiltro' => $estado,
+            'busqueda' => $busqueda,
         ]);
     }
 
@@ -115,6 +125,15 @@ class ClienteController extends Controller
         return redirect()
             ->route('clientes.index')
             ->with('status', 'Cliente eliminado.');
+    }
+
+    public function toggleActivo(Cliente $cliente): RedirectResponse
+    {
+        $cliente->update(['activo' => ! $cliente->activo]);
+
+        return redirect()
+            ->route('clientes.show', $cliente)
+            ->with('status', $cliente->activo ? 'Cliente reactivado.' : 'Cliente dado de baja.');
     }
 
     /**

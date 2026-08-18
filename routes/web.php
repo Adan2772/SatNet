@@ -7,6 +7,7 @@ use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('dashboard'));
@@ -24,12 +25,21 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('clientes', ClienteController::class);
+    Route::post('clientes/{cliente}/toggle-activo', [ClienteController::class, 'toggleActivo'])
+        ->name('clientes.toggle-activo');
+
     Route::resource('planes', PlanController::class)
         ->parameters(['planes' => 'plan'])
         ->except(['show']);
 
     Route::post('suscripciones/{suscripcion}/pagos', [PagoController::class, 'store'])
         ->name('suscripciones.pagos.store');
+    Route::get('suscripciones/{suscripcion}/pagos/{pago}/edit', [PagoController::class, 'edit'])
+        ->name('suscripciones.pagos.edit');
+    Route::put('suscripciones/{suscripcion}/pagos/{pago}', [PagoController::class, 'update'])
+        ->name('suscripciones.pagos.update');
+    Route::delete('suscripciones/{suscripcion}/pagos/{pago}', [PagoController::class, 'destroy'])
+        ->name('suscripciones.pagos.destroy');
 
     Route::get('suscripciones/{suscripcion}/enlace', [EnlaceController::class, 'edit'])
         ->name('suscripciones.enlace.edit');
@@ -37,4 +47,7 @@ Route::middleware('auth')->group(function () {
         ->name('suscripciones.enlace.update');
 
     Route::get('recibos/{recibo}', [ReciboController::class, 'show'])->name('recibos.show');
+
+    Route::get('reportes/pagos', [ReporteController::class, 'pagos'])->name('reportes.pagos');
+    Route::get('reportes/pagos/exportar', [ReporteController::class, 'pagosCsv'])->name('reportes.pagos.exportar');
 });

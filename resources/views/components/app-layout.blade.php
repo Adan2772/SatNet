@@ -21,6 +21,7 @@
                         ['route' => 'dashboard', 'label' => 'Dashboard'],
                         ['route' => 'clientes.index', 'label' => 'Clientes'],
                         ['route' => 'planes.index', 'label' => 'Ofertas'],
+                        ['route' => 'reportes.pagos', 'label' => 'Reportes'],
                     ];
                 @endphp
                 @foreach ($links as $link)
@@ -45,6 +46,11 @@
                 @if (session('status'))
                     <div class="mb-6 rounded-lg border border-brand-100 bg-brand-50 px-4 py-3 text-sm text-brand-700">
                         {{ session('status') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="mb-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                        {{ session('error') }}
                     </div>
                 @endif
 

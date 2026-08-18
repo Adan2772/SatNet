@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Suscripcion extends Model
 {
+    use HasFactory;
+
     protected $table = 'suscripciones';
 
     protected $fillable = [
@@ -73,7 +76,8 @@ class Suscripcion extends Model
 
     public function scopeActivas($query)
     {
-        return $query->where('activa', true);
+        return $query->where('activa', true)
+            ->whereHas('cliente', fn ($q) => $q->where('activo', true));
     }
 
     public function scopeConVencimientoHoy($query)
@@ -108,5 +112,16 @@ class Suscripcion extends Model
         $siguiente = $fechaActual->copy()->addMonthNoOverflow();
 
         return $siguiente->day(min($diaPago, $siguiente->daysInMonth));
+    }
+
+    /**
+     * Inverso de siguienteCiclo(): a qué fecha vuelve el vencimiento si se anula
+     * el pago que lo adelantó un ciclo.
+     */
+    public static function cicloAnterior(Carbon $fechaActual, int $diaPago): Carbon
+    {
+        $anterior = $fechaActual->copy()->subMonthNoOverflow();
+
+        return $anterior->day(min($diaPago, $anterior->daysInMonth));
     }
 }
