@@ -31,10 +31,16 @@ En local, los correos (recordatorios y recibos) no se envían de verdad: `MAIL_M
 
 ## Configuración propia de SATNET
 
-`config/satnet.php` (variables `SATNET_TOLERANCIA_DIAS` y `SATNET_EVALUACION_HORA` en `.env`):
+`config/satnet.php` (variables en `.env`):
 
-- **Tolerancia de pago:** días después del vencimiento antes de marcar a un cliente como "vencido" (por defecto 5).
-- **Hora de evaluación:** hora a la que corre el recordatorio automático diario (por defecto 08:00).
+- **`SATNET_TOLERANCIA_DIAS`** (5): días después del vencimiento antes de marcar a un cliente como "vencido".
+- **`SATNET_EVALUACION_HORA`** (08:00): hora a la que corre el recordatorio automático diario a clientes.
+- **`SATNET_AVISO_DIAS`** (3): con cuántos días de anticipación se marca una suscripción como "próxima a vencer" en el resumen semanal.
+- **`SATNET_RESUMEN_DIA_SEMANA`** (1 = lunes) y **`SATNET_RESUMEN_HORA`** (08:00): cuándo se envía el resumen semanal a los usuarios del panel.
+
+## Resumen semanal de cobros
+
+`php artisan satnet:enviar-resumen-cobros` le manda a cada usuario del panel (no a los clientes) un correo con tres listas: quién vence en los próximos `SATNET_AVISO_DIAS` días, quién está en tolerancia y quién está vencido. Corre solo cada semana (`routes/console.php`), el mismo día y hora configurados arriba. Sirve para no tener que entrar al panel a revisar el dashboard o el calendario de cobros — el aviso llega a la bandeja de entrada.
 
 ## Estructura del dominio
 
@@ -50,7 +56,7 @@ Dar de baja a un cliente (`clientes.toggle-activo`) no lo borra: pone `clientes.
 php artisan test
 ```
 
-42 tests cubren la lógica de cobro (cálculo de tolerancia, ciclo de pago, casos límite de fin de mes), el flujo de pagos (registrar, editar, anular), recordatorios automáticos, búsqueda y baja de clientes, el enlace técnico (incluida la validación de IP duplicada), usuarios del panel, el calendario de cobros y el reporte/exportación CSV. También incluyen guardas de regresión para los dos bugs reales que se encontraron durante el desarrollo (el binding de ruta de `planes` y el envío de correo que se quedaba encolado sin worker).
+45 tests cubren la lógica de cobro (cálculo de tolerancia, ciclo de pago, casos límite de fin de mes), el flujo de pagos (registrar, editar, anular), recordatorios automáticos, búsqueda y baja de clientes, el enlace técnico (incluida la validación de IP duplicada), usuarios del panel, el calendario de cobros, el resumen semanal por correo y el reporte/exportación CSV. También incluyen guardas de regresión para los dos bugs reales que se encontraron durante el desarrollo (el binding de ruta de `planes` y el envío de correo que se quedaba encolado sin worker).
 
 ## Reportes
 

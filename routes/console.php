@@ -10,3 +10,6 @@ Artisan::command('inspire', function () {
 
 Schedule::command('satnet:evaluar-suscripciones')
     ->dailyAt(config('satnet.evaluacion_hora'));
+
+Schedule::command('satnet:enviar-resumen-cobros')
+    ->weeklyOn(config('satnet.resumen_dia_semana'), config('satnet.resumen_hora'));

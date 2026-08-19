@@ -86,6 +86,19 @@ class Suscripcion extends Model
     }
 
     /**
+     * Suscripciones que todavía están al día pero vencen dentro de los
+     * próximos $dias — aviso anticipado, antes de entrar en tolerancia.
+     */
+    public function scopeProximasAVencer($query, int $dias)
+    {
+        $hoy = Carbon::today();
+
+        return $query->activas()
+            ->whereDate('fecha_proximo_pago', '>', $hoy)
+            ->whereDate('fecha_proximo_pago', '<=', $hoy->copy()->addDays($dias));
+    }
+
+    /**
      * Próxima fecha de pago para un día de corte (1-31) a partir de una fecha dada,
      * ajustando meses cortos (ej. día 31 en febrero) al último día del mes.
      */

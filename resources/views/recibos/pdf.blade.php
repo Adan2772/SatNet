@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; color: #1d2622; font-size: 12px; }
-        .header { border-bottom: 2px solid #0e6e5a; padding-bottom: 12px; margin-bottom: 20px; }
-        .brand { font-size: 18px; font-weight: bold; color: #0e6e5a; }
-        .folio { color: #8a948d; }
+        body { font-family: Helvetica, Arial, sans-serif; color: #16233a; font-size: 12px; }
+        .header { border-bottom: 2px solid #0f2e5c; padding-bottom: 12px; margin-bottom: 20px; }
+        .brand { font-size: 18px; font-weight: bold; color: #0f2e5c; }
+        .folio { color: #5a6b80; }
         table.datos { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        table.datos td { padding: 6px 0; border-bottom: 1px solid #e1efe8; }
-        table.datos td.label { color: #8a948d; width: 40%; }
+        table.datos td { padding: 6px 0; border-bottom: 1px solid #cfe0f2; }
+        table.datos td.label { color: #5a6b80; width: 40%; }
         table.datos td.valor { text-align: right; font-weight: bold; }
-        .total { margin-top: 20px; text-align: right; font-size: 16px; font-weight: bold; color: #0e6e5a; }
-        .footer { margin-top: 40px; font-size: 10px; color: #8a948d; }
+        .total { margin-top: 20px; text-align: right; font-size: 16px; font-weight: bold; color: #0f2e5c; }
+        .footer { margin-top: 40px; font-size: 10px; color: #5a6b80; }
     </style>
 </head>
 <body>
