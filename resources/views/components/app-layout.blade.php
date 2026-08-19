@@ -19,6 +19,7 @@
                 @php
                     $links = [
                         ['route' => 'dashboard', 'label' => 'Dashboard'],
+                        ['route' => 'calendario', 'label' => 'Calendario'],
                         ['route' => 'clientes.index', 'label' => 'Clientes'],
                         ['route' => 'planes.index', 'label' => 'Ofertas'],
                         ['route' => 'reportes.pagos', 'label' => 'Reportes'],

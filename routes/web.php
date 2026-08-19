@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnlaceController;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('calendario', [CalendarioController::class, 'index'])->name('calendario');
 
     Route::resource('clientes', ClienteController::class);
     Route::post('clientes/{cliente}/toggle-activo', [ClienteController::class, 'toggleActivo'])

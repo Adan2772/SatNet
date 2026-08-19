@@ -50,8 +50,12 @@ Dar de baja a un cliente (`clientes.toggle-activo`) no lo borra: pone `clientes.
 php artisan test
 ```
 
-33 tests cubren la lógica de cobro (cálculo de tolerancia, ciclo de pago, casos límite de fin de mes), el flujo de pagos (registrar, editar, anular), recordatorios automáticos, búsqueda y baja de clientes, el enlace técnico (incluida la validación de IP duplicada) y el reporte/exportación CSV. También incluyen guardas de regresión para los dos bugs reales que se encontraron durante el desarrollo (el binding de ruta de `planes` y el envío de correo que se quedaba encolado sin worker).
+42 tests cubren la lógica de cobro (cálculo de tolerancia, ciclo de pago, casos límite de fin de mes), el flujo de pagos (registrar, editar, anular), recordatorios automáticos, búsqueda y baja de clientes, el enlace técnico (incluida la validación de IP duplicada), usuarios del panel, el calendario de cobros y el reporte/exportación CSV. También incluyen guardas de regresión para los dos bugs reales que se encontraron durante el desarrollo (el binding de ruta de `planes` y el envío de correo que se quedaba encolado sin worker).
 
 ## Reportes
 
 `/reportes/pagos` muestra el total cobrado en un rango de fechas (por defecto, el mes en curso) con exportación a CSV. El dashboard incluye el historial de ingresos de los últimos 6 meses.
+
+## Calendario de cobros
+
+`/calendario` agrupa a los clientes activos por su `dia_pago` (1–31) en tres rangos — inicio, mitad y fin de mes — para ver de un vistazo dónde se concentran los vencimientos y planear cuándo va a haber más actividad de cobranza. El día de pago es propio de cada suscripción, así que clientes con tolerancia a inicio, mitad y fin de mes conviven sin conflicto; esta vista solo los hace visibles agrupados.
