@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="130" viewBox="145 15 90 130" role="img" aria-label="Marca SATNET">
+  <title>Marca SATNET</title>
+  <path d="M205.4 45.6 A24 24 0 1 0 190 88" fill="none" stroke="#0F2E5C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M190 88 A24 24 0 1 1 173 129" fill="none" stroke="#00A9E0" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="216" cy="35" r="5.5" fill="#00A9E0"/>
+</svg>

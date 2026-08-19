@@ -8,17 +8,22 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
 
-    --color-brand-50: #e1efe8;
-    --color-brand-100: #c7ded3;
-    --color-brand-200: #9dc4b3;
-    --color-brand-300: #6ea690;
-    --color-brand-400: #3f8a71;
-    --color-brand-500: #0e6e5a;
-    --color-brand-600: #0b5a49;
-    --color-brand-700: #094839;
-    --color-brand-800: #073a2e;
-    --color-brand-900: #052c23;
+    /* Escala de marca: azul profundo del logo (órbita) */
+    --color-brand-50: #eaf1fa;
+    --color-brand-100: #cfe0f2;
+    --color-brand-200: #a3c4e6;
+    --color-brand-300: #6c9fd1;
+    --color-brand-400: #3e75ae;
+    --color-brand-500: #1d5389;
+    --color-brand-600: #0f2e5c;
+    --color-brand-700: #0b2447;
+    --color-brand-800: #081a34;
+    --color-brand-900: #051121;
 
-    --color-paper: #f6f4ee;
-    --color-ink: #1d2622;
+    /* Cian del haz de señal — acento puntual, no para texto sobre fondo blanco */
+    --color-accent: #00a9e0;
+    --color-accent-soft: #e3f6fc;
+
+    --color-paper: #f3f6fa;
+    --color-ink: #16233a;
 }

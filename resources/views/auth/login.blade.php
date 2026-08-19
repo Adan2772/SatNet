@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Iniciar sesión — {{ config('app.name') }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/satnet-icon.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="flex h-full items-center justify-center font-sans text-ink antialiased">
     <div class="w-full max-w-sm px-6">
-        <div class="mb-8 flex items-center gap-2">
-            <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 font-display text-base font-bold text-white">S</span>
-            <span class="font-display text-xl font-bold tracking-tight">SATNET</span>
-        </div>
+        <img src="{{ asset('images/satnet-logo.svg') }}" alt="SATNET — internet satelital" class="mb-8 h-24 w-auto">
 
         <h1 class="mb-1 font-display text-2xl font-bold">Panel de administrador</h1>
         <p class="mb-6 text-sm text-ink/60">Entra para ver el estado de cobro de tus clientes.</p>

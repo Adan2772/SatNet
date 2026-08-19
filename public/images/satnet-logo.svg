@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="222" viewBox="0 0 380 222" role="img" aria-label="Logotipo SATNET internet satelital">
+  <title>Logotipo SATNET</title>
+  <desc>Una S formada por dos arcos: el superior en azul profundo como órbita y el inferior en cian como haz de señal, con un punto separado en el extremo superior que representa el satélite.</desc>
+  <style>
+    .wm{font-family:'Helvetica Neue',Arial,sans-serif;font-size:40px;font-weight:500;letter-spacing:2px}
+    .tag{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:400;letter-spacing:3px;fill:#5A6B80}
+  </style>
+  <path d="M205.4 45.6 A24 24 0 1 0 190 88" fill="none" stroke="#0F2E5C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M190 88 A24 24 0 1 1 173 129" fill="none" stroke="#00A9E0" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="216" cy="35" r="5.5" fill="#00A9E0"/>
+  <text class="wm" x="190" y="182" text-anchor="middle"><tspan fill="#0F2E5C">SAT</tspan><tspan fill="#00A9E0">NET</tspan></text>
+  <text class="tag" x="190" y="206" text-anchor="middle">internet satelital</text>
+</svg>

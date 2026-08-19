@@ -66,8 +66,8 @@
                 @foreach ($ingresosPorMes as $mes)
                     <div class="flex items-center gap-3 text-sm">
                         <span class="w-16 shrink-0 text-ink/50">{{ $mes['etiqueta'] }}</span>
-                        <div class="h-2.5 flex-1 rounded-full bg-brand-50">
-                            <div class="h-2.5 rounded-full bg-brand-500" style="width: {{ max(3, round($mes['total'] / $maximo * 100)) }}%"></div>
+                        <div class="h-2.5 flex-1 rounded-full bg-accent-soft">
+                            <div class="h-2.5 rounded-full bg-accent" style="width: {{ max(3, round($mes['total'] / $maximo * 100)) }}%"></div>
                         </div>
                         <span class="w-24 shrink-0 text-right font-mono tabular-nums">${{ number_format($mes['total'], 2) }}</span>
                     </div>
