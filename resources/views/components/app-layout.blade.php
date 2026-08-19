@@ -22,6 +22,7 @@
                         ['route' => 'clientes.index', 'label' => 'Clientes'],
                         ['route' => 'planes.index', 'label' => 'Ofertas'],
                         ['route' => 'reportes.pagos', 'label' => 'Reportes'],
+                        ['route' => 'usuarios.index', 'label' => 'Usuarios'],
                     ];
                 @endphp
                 @foreach ($links as $link)

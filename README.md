@@ -19,6 +19,10 @@ Esto crea una base de datos SQLite local (`database/database.sqlite`) con datos 
 
 **Acceso de prueba:** `admin@satnet.test` / `password`
 
+## Usuarios del panel
+
+`/usuarios` administra las cuentas que pueden iniciar sesión (nombre, correo, contraseña) — no confundir con `Cliente`, que son los clientes del ISP. No hay roles todavía: cualquier usuario autenticado puede gestionar a los demás. La única regla es que nadie puede eliminar su propia cuenta desde ahí, para no quedarse fuera del panel a mitad de sesión.
+
 ## Recordatorios automáticos
 
 `php artisan satnet:evaluar-suscripciones` envía el recordatorio de pago a las suscripciones que hoy inician su periodo de tolerancia, y queda registrado como tarea programada diaria en `routes/console.php`. Para que corra sola en producción, el servidor necesita el cron de Laravel apuntando a `php artisan schedule:run` cada minuto.

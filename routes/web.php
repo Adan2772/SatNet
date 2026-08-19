@@ -8,6 +8,7 @@ use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('dashboard'));
@@ -50,4 +51,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('reportes/pagos', [ReporteController::class, 'pagos'])->name('reportes.pagos');
     Route::get('reportes/pagos/exportar', [ReporteController::class, 'pagosCsv'])->name('reportes.pagos.exportar');
+
+    Route::resource('usuarios', UserController::class)
+        ->parameters(['usuarios' => 'usuario'])
+        ->except(['show']);
 });
