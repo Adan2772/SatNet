@@ -5,8 +5,10 @@
     <style>
         body { font-family: Helvetica, Arial, sans-serif; color: #16233a; font-size: 12px; }
         .header { border-bottom: 2px solid #0f2e5c; padding-bottom: 12px; margin-bottom: 20px; }
+        .header table { width: 100%; border-collapse: collapse; }
+        .header td { vertical-align: middle; }
         .brand { font-size: 18px; font-weight: bold; color: #0f2e5c; }
-        .folio { color: #5a6b80; }
+        .folio { color: #5a6b80; text-align: right; }
         table.datos { width: 100%; border-collapse: collapse; margin-top: 16px; }
         table.datos td { padding: 6px 0; border-bottom: 1px solid #cfe0f2; }
         table.datos td.label { color: #5a6b80; width: 40%; }
@@ -17,8 +19,17 @@
 </head>
 <body>
     <div class="header">
-        <div class="brand">{{ config('app.name') }}</div>
-        <div class="folio">Recibo {{ $recibo->folio }}</div>
+        <table>
+            <tr>
+                <td style="width:38px;">
+                    <img src="{{ public_path('images/satnet-icon.svg') }}" style="width:30px;">
+                </td>
+                <td>
+                    <div class="brand">{{ config('app.name') }}</div>
+                </td>
+                <td class="folio">Recibo {{ $recibo->folio }}</td>
+            </tr>
+        </table>
     </div>
 
     <table class="datos">
