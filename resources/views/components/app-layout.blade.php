@@ -11,9 +11,9 @@
 </head>
 <body class="h-full font-sans text-ink antialiased">
     <div class="min-h-full lg:grid lg:grid-cols-[220px_1fr]">
-        <aside class="border-b border-brand-100 bg-white lg:min-h-full lg:border-b-0 lg:border-r">
+        <aside class="border-b border-white/10 bg-brand-800 lg:min-h-full lg:border-b-0 lg:border-r lg:border-white/10">
             <div class="px-5 py-4">
-                <img src="{{ asset('images/satnet-logo.svg') }}" alt="SATNET — internet satelital" class="h-16 w-auto">
+                <img src="{{ asset('images/satnet-logo-dark.svg') }}" alt="SATNET — internet satelital" class="h-16 w-auto">
             </div>
             <nav class="flex gap-1 overflow-x-auto px-3 pb-3 text-sm font-medium lg:flex-col lg:overflow-visible lg:pb-5">
                 @php
@@ -28,15 +28,15 @@
                 @endphp
                 @foreach ($links as $link)
                     <a href="{{ route($link['route']) }}"
-                       class="whitespace-nowrap rounded-lg px-3 py-2 {{ request()->routeIs($link['route'].'*') ? 'bg-brand-50 text-brand-700' : 'text-ink/70 hover:bg-brand-50/60 hover:text-ink' }}">
+                       class="whitespace-nowrap rounded-lg px-3 py-2 {{ request()->routeIs($link['route'].'*') ? 'bg-white/10 text-white' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
                         {{ $link['label'] }}
                     </a>
                 @endforeach
             </nav>
             @auth
-                <form method="POST" action="{{ route('logout') }}" class="hidden border-t border-brand-100 px-3 py-3 lg:block">
+                <form method="POST" action="{{ route('logout') }}" class="hidden border-t border-white/10 px-3 py-3 lg:block">
                     @csrf
-                    <button class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-ink/60 hover:bg-brand-50/60 hover:text-ink">
+                    <button class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white">
                         Cerrar sesión — {{ auth()->user()->name }}
                     </button>
                 </form>
