@@ -11,11 +11,29 @@
 </head>
 <body class="h-full font-sans text-ink antialiased">
     <div class="min-h-full lg:grid lg:grid-cols-[220px_1fr]">
-        <aside class="border-b border-white/10 bg-brand-800 lg:min-h-full lg:border-b-0 lg:border-r lg:border-white/10">
-            <div class="px-5 py-4">
+        <div class="flex items-center justify-between bg-brand-800 px-4 py-3 lg:hidden">
+            <span class="font-display text-base font-semibold text-white">{{ $title ?? config('app.name') }}</span>
+            <button type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú"
+                    class="rounded-lg p-2 text-white/80 hover:bg-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div data-menu-backdrop class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+        <aside id="mobile-nav"
+               class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full bg-brand-800 transition-transform duration-200 ease-in-out lg:static lg:z-auto lg:w-auto lg:translate-x-0 lg:min-h-full lg:border-r lg:border-white/10">
+            <div class="flex items-center justify-between px-5 py-4">
                 <img src="{{ asset('images/satnet-logo-dark.svg') }}" alt="SATNET — internet satelital" class="h-16 w-auto">
+                <button type="button" data-menu-close aria-label="Cerrar menú" class="rounded-lg p-1.5 text-white/70 hover:bg-white/10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <nav class="flex gap-1 overflow-x-auto px-3 pb-3 text-sm font-medium lg:flex-col lg:overflow-visible lg:pb-5">
+            <nav class="flex flex-col gap-1 px-3 pb-3 text-sm font-medium lg:pb-5">
                 @php
                     $links = [
                         ['route' => 'dashboard', 'label' => 'Dashboard'],
@@ -34,7 +52,7 @@
                 @endforeach
             </nav>
             @auth
-                <form method="POST" action="{{ route('logout') }}" class="hidden border-t border-white/10 px-3 py-3 lg:block">
+                <form method="POST" action="{{ route('logout') }}" class="border-t border-white/10 px-3 py-3">
                     @csrf
                     <button class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white">
                         Cerrar sesión — {{ auth()->user()->name }}
